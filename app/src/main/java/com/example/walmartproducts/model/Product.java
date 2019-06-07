@@ -1,5 +1,10 @@
 package com.example.walmartproducts.model;
 
+/*
+ * Product.java : Product data class
+ * Author : DONGGEUN JUNG (Dennis)
+ * Date : Jun.06.2019
+ */
 public class Product {
     protected String productId;
     protected String productName;

@@ -9,9 +9,6 @@ import android.util.Log;
 import com.example.walmartproducts.model.ApiMart;
 import com.example.walmartproducts.model.Mart;
 import com.example.walmartproducts.model.Product;
-import com.example.walmartproducts.view.ProductRVAdapter;
-
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import retrofit2.Call;
@@ -32,6 +29,7 @@ public class DataViewModel extends ViewModel {
     ApiMart mApi;
     static DataViewModel mViewModel;
 
+    // Create & return self instance
     public static DataViewModel getViewModel(FragmentActivity activity) {
         if( mViewModel == null )
             mViewModel = ViewModelProviders.of(activity).get(DataViewModel.class);

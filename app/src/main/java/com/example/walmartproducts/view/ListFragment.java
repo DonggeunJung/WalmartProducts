@@ -61,7 +61,6 @@ public class ListFragment extends BaseFragment {
     // Init RecyclerView adapter & Request Product list to server
     protected void initList(FragmentListBinding binding) {
         // Init RecyclerView adapter
-        //ProductRVAdapter rvAdapter = new ProductRVAdapter(mViewModel, this);
         mRvAdapter = new ProductRVAdapter(mViewModel, this);
         binding.rv.setAdapter( mRvAdapter );
         binding.rv.setLayoutManager(new LinearLayoutManager(getContext(),
@@ -87,7 +86,6 @@ public class ListFragment extends BaseFragment {
 
         // Set select particular item of Product list
         mViewModel.setSelProduct(position);
-        //mRvAdapter.setListObserver();
     }
 
     // Switch Body fragment

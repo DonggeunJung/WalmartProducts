@@ -6,6 +6,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
+/*
+ * ApiMart.java : Retrofit API interface
+ * Author : DONGGEUN JUNG (Dennis)
+ * Date : Jun.06.2019
+ */
 public interface ApiMart {
 
     // Make Retrofit object

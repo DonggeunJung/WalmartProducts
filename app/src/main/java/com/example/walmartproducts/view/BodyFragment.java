@@ -27,16 +27,4 @@ public class BodyFragment extends BaseFragment {
         return mBinding.getRoot();
     }
 
-    /*@Override
-    public void onDestroy() {
-        if( mListFragment != null )
-            mListFragment.switch2ListFragment();
-        super.onDestroy();
-    }
-
-    ListFragment mListFragment;
-    public void setListFragment(ListFragment listFragment) {
-        mListFragment = listFragment;
-    }*/
-
 }

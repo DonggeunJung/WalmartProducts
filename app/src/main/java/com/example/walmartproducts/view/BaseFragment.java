@@ -12,6 +12,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.walmartproducts.model.ApiMart;
 import com.example.walmartproducts.viewmodel.DataViewModel;
 
+/*
+ * BaseFragment.java : Super class of Fragment class. Get instance of ViewModel.
+ * Author : DONGGEUN JUNG (Dennis)
+ * Date : Jun.06.2019
+ */
 public class BaseFragment extends Fragment {
     DataViewModel mViewModel;
 

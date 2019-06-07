@@ -15,6 +15,11 @@ import com.example.walmartproducts.viewmodel.DataViewModel;
 
 import java.util.List;
 
+/*
+ * ProductRVAdapter.java : RecyclerView adapter class
+ * Author : DONGGEUN JUNG (Dennis)
+ * Date : Jun.06.2019
+ */
 public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.ProductVH> {
     private DataViewModel mViewModel;
     Fragment mParent;
@@ -79,15 +84,6 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.Prod
     public void onBindViewHolder(ProductRVAdapter.ProductVH viewHolder, int position) {
         // Set item index number to binding object
         viewHolder.bind(position);
-
-        /*// Show shortDescription to TextView
-        List<Product> products = mViewModel.getProducts().getValue();
-        Product product = products.get(position);
-        String shortDescription = product.getShortDescription();
-        if( shortDescription == null || shortDescription.length() < 8 )
-            viewHolder.binding.shortDescription.setText("");
-        else
-            viewHolder.binding.shortDescription.setText(Html.fromHtml(shortDescription));*/
     }
 
     // Reuse views

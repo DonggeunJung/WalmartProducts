@@ -2,6 +2,11 @@ package com.example.walmartproducts.model;
 
 import java.util.List;
 
+/*
+ * Mart.java : Mart data class including Product list
+ * Author : DONGGEUN JUNG (Dennis)
+ * Date : Jun.06.2019
+ */
 public class Mart {
     public List<Product> products;
     protected int totalProducts;
