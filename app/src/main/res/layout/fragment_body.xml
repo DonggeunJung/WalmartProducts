@@ -37,7 +37,28 @@
                 android:layout_marginBottom="15dp"
                 android:orientation="horizontal">
 
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|left"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:stepSize="0.5"
+                    android:max="5"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:rating="@{viewModel.selProduct.reviewRating}"/>
+
                 <TextView
+                    android:id="@+id/tvReviewCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="top|left"
+                    android:textSize="14sp"
+                    android:textColor="#222"
+                    android:text="@{Integer.toString(viewModel.selProduct.reviewCount)}"/>
+
+                <!--<TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="top|left"
@@ -71,7 +92,7 @@
                     android:gravity="top|left"
                     android:textSize="14sp"
                     android:textColor="#222"
-                    android:text="@{Integer.toString(viewModel.selProduct.reviewCount)}"/>
+                    android:text="@{Integer.toString(viewModel.selProduct.reviewCount)}"/>-->
 
             </LinearLayout>
 
