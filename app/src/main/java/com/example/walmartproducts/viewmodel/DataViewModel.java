@@ -115,12 +115,11 @@ public class DataViewModel extends ViewModel {
             return;
         }
 
-        List<Product> cloneProducts = new ArrayList<>(products);
         for(Product product : newProducts ) {
-            cloneProducts.add(product);
+            products.add(product);
         }
-        Log.d("tag", "ViewModel - addProducts(): " + newProducts.size());
-        getProducts().setValue(cloneProducts);
+        //Log.d("tag", "ViewModel - addProducts(): " + newProducts.size());
+        getProducts().postValue(products);
     }
 
 }

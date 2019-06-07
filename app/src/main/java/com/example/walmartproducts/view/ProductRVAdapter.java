@@ -1,24 +1,15 @@
 package com.example.walmartproducts.view;
 
 import android.arch.lifecycle.Observer;
-import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.walmartproducts.R;
 import com.example.walmartproducts.databinding.ProductItemBinding;
-import com.example.walmartproducts.model.ApiMart;
 import com.example.walmartproducts.model.Product;
 import com.example.walmartproducts.viewmodel.DataViewModel;
 
@@ -36,18 +27,22 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.Prod
         this.mParent = parent;
         mAdapter = this;
 
+        setListObserver();
+    }
+
+    public void setListObserver() {
         // make Product list Observer object
         final Observer<List<Product>> productsObserver = new Observer<List<Product>>() {
             @Override
             public void onChanged(@Nullable final List<Product> products) {
-                Log.d("tag", "RVAdapter - onChanged()");
+                //Log.d("tag", "RVAdapter - onChanged()");
                 // When Product list is changed update RecyclerView
                 mAdapter.notifyDataSetChanged();
             }
         };
 
         // Send Observer object to ViewModel
-        viewModel.getProducts().observe(this.mParent, productsObserver);
+        mViewModel.getProducts().observe(this.mParent.getActivity(), productsObserver);
     }
 
     // Return list items count

@@ -13,6 +13,10 @@
 # /java/<packagename>/view/MainActivity.java : 
   Main activity class.
 
+# /java/<packagename>/view/BaseFragment.java :
+  Super class of Fragment class. Get instance of ViewModel.
+  Contains static methods.
+
 # /java/<packagename>/view/BodyFragment.java : 
   Detail infomation fragment source file
 
@@ -25,8 +29,8 @@
 # /java/<packagename>/viewmodel/ApiComponent.java :
   Dagger interface for Retrofit object injection
 
-# /java/<packagename>/viewmodel/ApiComponent.java :
-  Dagger class for Retrofit object injection
+# /java/<packagename>/viewmodel/ApiModule.java :
+  Retrofit object creating class for dependence injection
 
 # /java/<packagename>/viewmodel/DataViewModel.java :
   ViewModel class. Manage data & request to server
@@ -39,10 +43,6 @@
 
 # /java/<packagename>/model/Mart.java :
   Mart data class including Product list
-
-# /java/<packagename>/App.java :
-  Application class.
-  Stores single tone of ViewModel instance.
 
 
 [Layout resource files]==========================================

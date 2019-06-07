@@ -2,6 +2,7 @@ package com.example.walmartproducts.view;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ import static android.content.ContentValues.TAG;
  */
 public class ListFragment extends BaseFragment {
     boolean mMultiPanel = false;
+    ProductRVAdapter mRvAdapter;
 
     // When Fragment view is created, load layout file
     @Override
@@ -59,8 +61,9 @@ public class ListFragment extends BaseFragment {
     // Init RecyclerView adapter & Request Product list to server
     protected void initList(FragmentListBinding binding) {
         // Init RecyclerView adapter
-        ProductRVAdapter rvAdapter = new ProductRVAdapter(mViewModel, this);
-        binding.rv.setAdapter( rvAdapter );
+        //ProductRVAdapter rvAdapter = new ProductRVAdapter(mViewModel, this);
+        mRvAdapter = new ProductRVAdapter(mViewModel, this);
+        binding.rv.setAdapter( mRvAdapter );
         binding.rv.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false));
         // Show Item Divider on RecyclerView
@@ -84,6 +87,7 @@ public class ListFragment extends BaseFragment {
 
         // Set select particular item of Product list
         mViewModel.setSelProduct(position);
+        //mRvAdapter.setListObserver();
     }
 
     // Switch Body fragment
@@ -96,4 +100,5 @@ public class ListFragment extends BaseFragment {
                 .addToBackStack(null)
                 .commit();
     }
+
 }
