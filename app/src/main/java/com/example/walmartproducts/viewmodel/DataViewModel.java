@@ -98,22 +98,6 @@ public class DataViewModel extends ViewModel {
         });
     }
 
-    public void addProducts(List<Product> newProducts) {
-        List<Product> products = getProducts().getValue();
-        if( products == null ) {
-            getProducts().setValue(newProducts);
-            return;
-        }
-
-        List<Product> cloneProducts = new ArrayList<Product>(products);
-
-        for( Product product : newProducts ) {
-            cloneProducts.add(product);
-        }
-        Log.d("tag", "ViewModel - addProducts()");
-        getProducts().setValue(cloneProducts);
-    }
-
     // Set select particular item of Product list
     public void setSelProduct(int index) {
         List<Product> products = getProducts().getValue();
@@ -121,6 +105,22 @@ public class DataViewModel extends ViewModel {
             return;
 
         getSelProduct().setValue( products.get(index) );
+    }
+
+    public void addProducts(List<Product> newProducts) {
+        if( newProducts == null || newProducts.size() < 1 ) return;
+        List<Product> products = getProducts().getValue();
+        if( products == null ) {
+            getProducts().setValue(newProducts);
+            return;
+        }
+
+        List<Product> cloneProducts = new ArrayList<>(products);
+        for(Product product : newProducts ) {
+            cloneProducts.add(product);
+        }
+        Log.d("tag", "ViewModel - addProducts(): " + newProducts.size());
+        getProducts().setValue(cloneProducts);
     }
 
 }
