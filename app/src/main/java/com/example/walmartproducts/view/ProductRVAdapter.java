@@ -7,10 +7,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -38,6 +40,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.Prod
         final Observer<List<Product>> productsObserver = new Observer<List<Product>>() {
             @Override
             public void onChanged(@Nullable final List<Product> products) {
+                Log.d("tag", "RVAdapter - onChanged()");
                 // When Product list is changed update RecyclerView
                 mAdapter.notifyDataSetChanged();
             }
@@ -82,14 +85,14 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.Prod
         // Set item index number to binding object
         viewHolder.bind(position);
 
-        // Show shortDescription to TextView
+        /*// Show shortDescription to TextView
         List<Product> products = mViewModel.getProducts().getValue();
         Product product = products.get(position);
         String shortDescription = product.getShortDescription();
         if( shortDescription == null || shortDescription.length() < 8 )
             viewHolder.binding.shortDescription.setText("");
         else
-            viewHolder.binding.shortDescription.setText(Html.fromHtml(shortDescription));
+            viewHolder.binding.shortDescription.setText(Html.fromHtml(shortDescription));*/
     }
 
     // Reuse views
@@ -105,17 +108,6 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.Prod
             binding.setIndex(index);
             binding.executePendingBindings();
         }
-    }
-
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        if( imageUrl == null || imageUrl.length() < 4 )
-            return;
-        String fullUrl = ApiMart.BASE_URL + imageUrl.substring(1);
-        Glide.with(view.getContext())
-                .load(fullUrl)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(view);
     }
 
 }

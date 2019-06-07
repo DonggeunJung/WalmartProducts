@@ -3,10 +3,12 @@ package com.example.walmartproducts.view;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -31,17 +33,6 @@ public class BodyFragment extends BaseFragment {
         mBinding.setLifecycleOwner(this);
         mBinding.setViewModel(mViewModel);
         return mBinding.getRoot();
-    }
-
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        if( imageUrl == null || imageUrl.length() < 4 )
-            return;
-        String fullUrl = ApiMart.BASE_URL + imageUrl.substring(1);
-        Glide.with(view.getContext())
-                .load(fullUrl)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(view);
     }
 
 }

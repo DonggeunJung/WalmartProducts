@@ -2,12 +2,16 @@ package com.example.walmartproducts.viewmodel;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProviders;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.example.walmartproducts.model.ApiMart;
 import com.example.walmartproducts.model.Mart;
 import com.example.walmartproducts.model.Product;
 import com.example.walmartproducts.view.ProductRVAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import retrofit2.Call;
@@ -26,6 +30,13 @@ public class DataViewModel extends ViewModel {
 
     @Inject
     ApiMart mApi;
+    static DataViewModel mViewModel;
+
+    public static DataViewModel getViewModel(FragmentActivity activity) {
+        if( mViewModel == null )
+            mViewModel = ViewModelProviders.of(activity).get(DataViewModel.class);
+        return mViewModel;
+    }
 
     // Constructor - Inject Retrofit API object
     public DataViewModel() {
@@ -94,11 +105,13 @@ public class DataViewModel extends ViewModel {
             return;
         }
 
-        for( Product product : newProducts ) {
-            products.add(product);
-        }
+        List<Product> cloneProducts = new ArrayList<Product>(products);
 
-        getProducts().postValue(products);
+        for( Product product : newProducts ) {
+            cloneProducts.add(product);
+        }
+        Log.d("tag", "ViewModel - addProducts()");
+        getProducts().setValue(cloneProducts);
     }
 
     // Set select particular item of Product list

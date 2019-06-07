@@ -104,6 +104,7 @@
                     android:id="@+id/shortDescription"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    app:text="@{viewModel.products[index].shortDescription}"
                     />
 
             </LinearLayout>
