@@ -1,0 +1,80 @@
+/*
+* WalmartProducts : Get Walmart product list from server and display on RecyclerView.
+* Author : DONGGEUN JUNG (Dennis)
+* Date : Jun.06.2019
+*/
+# Project URL : https://github.com/DonggeunJung/WalmartProducts
+# Project slug : Shows Product list and detail infomation. Using Retrofit API
+# Project description : Android sample project shows product list. Using Retrofit API, DataBinding, LiveData, Dagger, and Fragment.
+
+
+[Java source files]==========================================
+
+# /java/<packagename>/view/MainActivity.java : 
+  Main activity class.
+
+# /java/<packagename>/view/BodyFragment.java : 
+  Detail infomation fragment source file
+
+# /java/<packagename>/view/ListFragment.java : 
+  School list fragment source file
+
+# /java/<packagename>/view/ProductRVAdapter.java :
+  RecyclerView adapter class
+
+# /java/<packagename>/viewmodel/ApiComponent.java :
+  Dagger interface for Retrofit object injection
+
+# /java/<packagename>/viewmodel/ApiComponent.java :
+  Dagger class for Retrofit object injection
+
+# /java/<packagename>/viewmodel/DataViewModel.java :
+  ViewModel class. Manage data & request to server
+
+# /java/<packagename>/model/ApiMart.java :
+  Retrofit API interface
+
+# /java/<packagename>/model/Product.java :
+  Product data class
+
+# /java/<packagename>/model/Mart.java :
+  Mart data class including Product list
+
+# /java/<packagename>/App.java :
+  Application class.
+  Stores single tone of ViewModel instance.
+
+
+[Layout resource files]==========================================
+
+# /res/layout/activity_main.xml :
+  Main activity layout file for Phone.
+
+# /res/layout-sw600dp/activity_main.xml :
+  Main activity layout file for Tablet.
+
+# /res/layout/fragment_list.xml :
+  List fragment layout file.
+
+# /res/layout/fragment_body.xml :
+  Detail infomation fragment layout file.
+
+# /res/layout/product_item.xml :
+  RecyclerView custom item layout file.
+
+
+[Unit test source files]==========================================
+
+# /test/java/<packagename>/BaseRetrofitTest.java :
+  Retrofit Unit test base class.
+  Create RetrofitApi.
+
+# /test/java/<packagename>/ReqMartTest.java :
+  Retrofit Unit test class. Get 1st page of product data list
+  When the response has 10 items of data, the result is correct.
+
+
+[ Source code download address ]======================================
+
+# GitHub
+https://github.com/DonggeunJung/WalmartProducts
