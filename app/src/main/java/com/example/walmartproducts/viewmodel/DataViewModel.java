@@ -23,7 +23,6 @@ public class DataViewModel extends ViewModel {
     private MutableLiveData<List<Product>> mProducts;
     private MutableLiveData<Product> mSelProduct;
     public String defaultDescription = "<p></p>";
-    protected ProductRVAdapter mAdapter;
 
     @Inject
     ApiMart mApi;
@@ -32,10 +31,6 @@ public class DataViewModel extends ViewModel {
     public DataViewModel() {
         ApiComponent component = DaggerApiComponent.builder().build();
         component.inject(this);
-    }
-
-    public void setRVAdapter(ProductRVAdapter adapter) {
-        mAdapter = adapter;
     }
 
     public MutableLiveData<Mart> getMart() {
@@ -103,8 +98,7 @@ public class DataViewModel extends ViewModel {
             products.add(product);
         }
 
-        if( mAdapter != null )
-            mAdapter.notifyDataSetChanged();
+        getProducts().postValue(products);
     }
 
     // Set select particular item of Product list

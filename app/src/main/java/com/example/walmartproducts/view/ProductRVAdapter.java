@@ -30,7 +30,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.Prod
     // Constructor
     public ProductRVAdapter(DataViewModel viewModel, Fragment parent) {
         this.mViewModel = viewModel;
-        viewModel.setRVAdapter(this);
+        //viewModel.setRVAdapter(this);
         this.mParent = parent;
         mAdapter = this;
 
@@ -81,6 +81,8 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.Prod
     public void onBindViewHolder(ProductRVAdapter.ProductVH viewHolder, int position) {
         // Set item index number to binding object
         viewHolder.bind(position);
+
+        // Show shortDescription to TextView
         List<Product> products = mViewModel.getProducts().getValue();
         Product product = products.get(position);
         String shortDescription = product.getShortDescription();
