@@ -18,7 +18,7 @@
 1. Scroll Product list
 2. Click particular Product item
 3. Detail data of Product is shown on 2nd fragment
-4. Scroll up until the end of list to load next page of list.
+4. Lazy loading : Scroll up until the end of list to load next page of list.
 
 
 < Used library >
