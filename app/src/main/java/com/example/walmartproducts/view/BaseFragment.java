@@ -26,6 +26,7 @@ public class BaseFragment extends Fragment {
         mViewModel = DataViewModel.getViewModel(getActivity());
     }
 
+    // Download image & show on ImageView by Glide library
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
         if( imageUrl == null || imageUrl.length() < 4 )
@@ -37,13 +38,11 @@ public class BaseFragment extends Fragment {
                 .into(view);
     }
 
+    // Show html tag on TextView
     @BindingAdapter({"bind:text"})
     public static void setText(TextView view, String text) {
-        if( view == null )
-            return;
         if( text == null )
             view.setText("");
-
         else if( text.indexOf("</") >= 0 || text.indexOf(">") >= 0)
             view.setText(Html.fromHtml(text));
         else
