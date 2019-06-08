@@ -23,7 +23,6 @@ public class DataViewModel extends ViewModel {
     private MutableLiveData<Mart> mMart;
     private MutableLiveData<List<Product>> mProducts;
     private MutableLiveData<Product> mSelProduct;
-    public String defaultDescription = "<p></p>";
 
     @Inject
     ApiMart mApi;
@@ -71,22 +70,19 @@ public class DataViewModel extends ViewModel {
         Mart mart = getMart().getValue();
         if( mart != null )
             pageNumber = mart.getPageNumber();
+
         Call<Mart> call = mApi.getMart(pageNumber+1, 15);
         call.enqueue(new Callback<Mart>() {
 
             @Override
             public void onResponse(Call<Mart> call, Response<Mart> response) {
-                // When completed, get data & save
+                // When completed, get Mart data & save
                 Mart mart = response.body();
                 getMart().setValue(mart);
 
+                // Get Products list data & save
                 List<Product> products = mart.getProducts();
                 addProducts(products);
-
-                // Show 1st item's detail data
-                if( products.size() > 0 && mart.getPageNumber() == 1 ) {
-                    setSelProduct(0);
-                }
             }
 
             @Override
@@ -105,18 +101,26 @@ public class DataViewModel extends ViewModel {
         getSelProduct().setValue( products.get(index) );
     }
 
+    // Save new product list in Array
     public void addProducts(List<Product> newProducts) {
         if( newProducts == null || newProducts.size() < 1 ) return;
+        // When this is the 1st data
         List<Product> products = getProducts().getValue();
         if( products == null ) {
+            // Save new list to Array
             getProducts().setValue(newProducts);
+            // Show 1st item's detail data on body Fragment
+            setSelProduct(0);
             return;
         }
 
+        // When this is not 1st data
         for(Product product : newProducts ) {
+            // Add new list to previous Array
             products.add(product);
         }
         //Log.d("tag", "ViewModel - addProducts(): " + newProducts.size());
+        // Send event to View (= RecyclerView Adapter)
         getProducts().postValue(products);
     }
 
