@@ -55,7 +55,7 @@
                 android:layout_marginBottom="4dp"
                 android:gravity="center_vertical|left"
                 android:textSize="16sp"
-                android:textColor="#222"
+                android:textColor="@color/colorDetailValue"
                 android:text="@{viewModel.products[index].productName}"/>
 
             <LinearLayout
@@ -81,7 +81,7 @@
                     android:layout_marginLeft="20dp"
                     android:gravity="top|left"
                     android:textSize="14sp"
-                    android:textColor="#222"
+                    android:textColor="@color/colorDetailValue"
                     android:text="@{Integer.toString(viewModel.products[index].reviewCount)}"/>
 
             </LinearLayout>
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|left"
                 android:textSize="18sp"
-                android:textColor="#222"
+                android:textColor="@color/colorDetailValue"
                 android:text="@{viewModel.products[index].price}"/>
 
             <LinearLayout
