@@ -23,31 +23,15 @@ import java.util.List;
 public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.ProductVH> {
     private DataViewModel mViewModel;
     Fragment mParent;
-    RecyclerView.Adapter<ProductRVAdapter.ProductVH> mAdapter;
 
     // Constructor
     public ProductRVAdapter(DataViewModel viewModel, Fragment parent) {
         this.mViewModel = viewModel;
-        //viewModel.setRVAdapter(this);
         this.mParent = parent;
-        mAdapter = this;
 
-        setListObserver();
-    }
-
-    public void setListObserver() {
-        // make Product list Observer object
-        final Observer<List<Product>> productsObserver = new Observer<List<Product>>() {
-            @Override
-            public void onChanged(@Nullable final List<Product> products) {
-                //Log.d("tag", "RVAdapter - onChanged()");
-                // When Product list is changed update RecyclerView
-                mAdapter.notifyDataSetChanged();
-            }
-        };
-
-        // Send Observer object to ViewModel
-        mViewModel.getProducts().observe(this.mParent.getActivity(), productsObserver);
+        // Set List data Observer object to ViewModel
+        mViewModel.getProducts().observe(this.mParent.getActivity(),
+                (@Nullable final List<Product> products) -> this.notifyDataSetChanged());
     }
 
     // Return list items count
@@ -95,6 +79,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.Prod
             this.binding = binding;
         }
 
+        // Set item index number to binding object
         public void bind(int index) {
             binding.setIndex(index);
             binding.executePendingBindings();
