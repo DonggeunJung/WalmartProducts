@@ -13,18 +13,16 @@ import com.example.walmartproducts.databinding.FragmentBodyBinding;
  * Date : Jun.06.2019
  */
 public class BodyFragment extends BaseFragment {
-    FragmentBodyBinding mBinding;
 
-    // When Fragment view is created, load layout file
-    // Bind view with ViewModel
+    // When Fragment view is created, load layout file & Bind view with ViewModel
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Bind view with ViewModel
-        mBinding = DataBindingUtil.inflate(
+        FragmentBodyBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_body, container, false);
-        mBinding.setLifecycleOwner(this);
-        mBinding.setViewModel(mViewModel);
-        return mBinding.getRoot();
+        binding.setLifecycleOwner(this);
+        binding.setViewModel(mViewModel);
+        return binding.getRoot();
     }
 
 }
