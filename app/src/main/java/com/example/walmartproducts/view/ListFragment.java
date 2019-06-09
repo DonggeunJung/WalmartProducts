@@ -33,7 +33,7 @@ public class ListFragment extends BaseFragment {
         FragmentListBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_list, container, false);
         // Init RecyclerView adapter & Request Product list to server
-        initList(binding);
+        initListView(binding);
 
         return binding.getRoot();
     }
@@ -42,11 +42,11 @@ public class ListFragment extends BaseFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // Check whether multiple panel mode
-        initBodyFragment();
+        checkMultiplePanel();
     }
 
     // Check whether multiple panel mode
-    private void initBodyFragment() {
+    private void checkMultiplePanel() {
         // Get Body fragment from layout & save to member variable
         BodyFragment bodyF = (BodyFragment)getActivity().getSupportFragmentManager()
                 .findFragmentById(R.id.fragBody);
@@ -57,7 +57,7 @@ public class ListFragment extends BaseFragment {
     }
 
     // Init RecyclerView adapter & Request Product list to server
-    protected void initList(FragmentListBinding binding) {
+    protected void initListView(FragmentListBinding binding) {
         // Init RecyclerView adapter
         ProductRVAdapter rvAdapter = new ProductRVAdapter(mViewModel, this);
         binding.rv.setAdapter( rvAdapter );
@@ -70,14 +70,13 @@ public class ListFragment extends BaseFragment {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (!binding.rv.canScrollVertically(1)) {
-                    Log.i(TAG, "End of list");
                     mViewModel.reqMart();
                 }
             }
         });
     }
 
-    // Product RecyclerView item selection event
+    // Product RecyclerView item selected event
     public void onItemSelected(int position) {
         // When single panel mode, switch to 2nd fragment
         if( mMultiPanel == false )
