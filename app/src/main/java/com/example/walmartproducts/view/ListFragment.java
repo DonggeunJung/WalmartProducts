@@ -22,7 +22,6 @@ import static android.content.ContentValues.TAG;
  */
 public class ListFragment extends BaseFragment {
     boolean mMultiPanel = false;
-    ProductRVAdapter mRvAdapter;
 
     // When Fragment view is created, load layout file
     @Override
@@ -33,8 +32,6 @@ public class ListFragment extends BaseFragment {
         // Save self fragment object as a member variable
         FragmentListBinding binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_list, container, false);
-        binding.setLifecycleOwner(this);
-        binding.setViewModel(mViewModel);
         // Init RecyclerView adapter & Request Product list to server
         initList(binding);
 
@@ -51,7 +48,8 @@ public class ListFragment extends BaseFragment {
     // Check whether multiple panel mode
     private void initBodyFragment() {
         // Get Body fragment from layout & save to member variable
-        BodyFragment bodyF = (BodyFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.fragBody);
+        BodyFragment bodyF = (BodyFragment)getActivity().getSupportFragmentManager()
+                .findFragmentById(R.id.fragBody);
         // When 2nd panel is exist, it means multiple panel
         if( bodyF != null && bodyF.getView().getVisibility() == View.VISIBLE ) {
             mMultiPanel = true;
@@ -61,12 +59,13 @@ public class ListFragment extends BaseFragment {
     // Init RecyclerView adapter & Request Product list to server
     protected void initList(FragmentListBinding binding) {
         // Init RecyclerView adapter
-        mRvAdapter = new ProductRVAdapter(mViewModel, this);
-        binding.rv.setAdapter( mRvAdapter );
+        ProductRVAdapter rvAdapter = new ProductRVAdapter(mViewModel, this);
+        binding.rv.setAdapter( rvAdapter );
         binding.rv.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false));
         // Show Item Divider on RecyclerView
         binding.rv.addItemDecoration(new DividerItemDecoration(getContext(), 1));
+        // Lazy loading : When scroll to end, request next page of list to server
         binding.rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
